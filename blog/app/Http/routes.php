@@ -12,5 +12,22 @@
 */
 
 Route::get('/', function () {
+
     return view('welcome');
+
+});
+
+Route::group(['prefix' => 'test'], function(){
+
+	Route::get('view/{article?}', function($article = "vacio"){
+
+		echo $article;
+
+	});
+
+});
+
+Route::group(['prefix' => 'articles'], function(){
+
+	Route::get('view/{id}', ['uses' => 'TestController@view', 'as' => 'articlesView']);
 });
